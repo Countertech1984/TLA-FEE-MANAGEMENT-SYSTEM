@@ -43,7 +43,7 @@ def submit():                           # try to link app code here
             print("Value out of bounds, please enter session values between 1 and 5.")      # TODO look into input validation  chapt4er in AOTOMATE THE BORING STUFF BOOK P.190
             break
                 
-    child_age = int(input('Please enter child age: '))
+    child_age = int(input('Please enter child age: '))  ################ TODO MODIFY THIS FOR HTML FORM INPUT
 
     if child_age > 6 or child_age < 0:
         print('Invalid age, please enter age between 0 and 5')
@@ -53,7 +53,7 @@ def submit():                           # try to link app code here
 
     try:
         funded_hours = int(input("Enter a number (0, 15, or 30): "))
-        if funded_hours in valid_funding_hours:
+        if funded_hours in valid_funding_hours:                                ################  TODO MODIFY THIS FOR HTML FORM INPUT
             print(f"Accepted value: {funded_hours}")
                         
         else:
@@ -135,5 +135,6 @@ if __name__== '__main__':
                 
     # cursor.close()
     # connection.close()
+
 
 
