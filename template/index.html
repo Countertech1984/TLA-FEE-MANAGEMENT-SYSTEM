@@ -1,0 +1,56 @@
+<!DOCTYPE html> <!-- This tells browser what type of document it is reading -->
+
+<html lang="en"> <!-- html tag element with a lang attribute set to en, this is the place whter all code goes -->
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TLA FEE CALCULATOR</title>
+		<link href="styles.css" rel="stylesheet"/> <!-- Link to css style sheet for website, where style and design structure classes are defined -->
+	</head>
+	<body>
+		<main>
+			<h1>TLA FEE CALCULATOR</h1>
+			<p>Please fill in this form with all the required information</p>
+			<form method="GET/POST" action="domain collection location">
+		
+				<fieldset>
+					<label for="list id">Select Child Age Range 
+						<select id="list id" name="child age">
+							<option value="">(select one)</option>
+							<option value="1">Under 2 years</option>
+							<option value="2">2 to 3 years</option>															<!-- Drop down list input example-->
+							<option value="3">3 to 5 years</option>
+						</select>
+					</label>			
+				</fieldset>
+			<p>Please Select Funding Type</p>	
+				<fieldset>
+					<label for="id3"> Unfunded<input id ="id3" name = "appropriate key 3" type = "radio" class ="user-defined-class" required /></label><br> <!-- radio button input examples -->
+					<label for="id4"> 15 hours funding<input id ="id4" name = "appropriate key 4" type = "radio" class = "user-defined-class" required /></label><br>
+					<label for="id5"> 30 hours funding<input id ="id5" name = "appropriate key 5" type = "radio" class = "user-defined-class" required /></label>
+				</fieldset>
+			<p>Enter Session Information Details</p>	
+			<fieldset>
+				<label for = "days">Number of Days per Week:<input id = "days" name = "days" type = "number"/></label><br>
+				<label for = "morning_sessions">Number of Morning Sessions:   <input id = "morning_sessions" name = "morning_sessions" type = "number"/></label><br>
+				<label for = "afternoon_sessions">Number of Afternood Sessions: <input id = "afternoon_sessions" name = "afternoon_sessions" type = "number"/></label>
+			</fieldset>   																										<!-- Terms and conditions checkbox example -->
+			<br>				
+			<input type="submit" value="Calculate Fees" />
+					<!-- This sends the form to the collection location -->
+		</form>
+
+		<div class = "output">
+			<h1 class = "monthly_fee"> monthly_fee: {{monthly_fee | safe}}<h1>
+		</div>
+
+	</main>
+	</body>
+	<footer>
+		<br> 
+		<img width="385" height="100" src="https://thelittleacademy.co.uk/wp-content/uploads/2022/05/LittleAcademy_Logo_CM1.webp" class="attachment-large size-large wp-image-339" alt="" srcset="https://thelittleacademy.co.uk/wp-content/uploads/2022/05/LittleAcademy_Logo_CM1.webp 385w, https://thelittleacademy.co.uk/wp-content/uploads/2022/05/LittleAcademy_Logo_CM1-300x78.webp 300w" sizes="(max-width: 385px) 100vw, 385px"><!-- Add logo, design signiture, social media icons, certifications, verifications, etc here -->
+	</footer>
+</html>
+
+
+<!-- this can be captured using an echo script --> -
