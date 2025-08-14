@@ -2,19 +2,19 @@ import sqlite3
 import os
 from flask import Flask, request, render_template
 
-app = Flask(__name__, template_folder='F:\PremierPro\YT\VID006\Code')
+app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', monthly_fee=None)
 
 @app.route('/', methods=['POST'])
-def submit():                           # try to link app code here
+def submit():                          
 
     db_path = os.path.join(os.path.dirname(__file__), 'attendance.db') 
 
     if not os.path.exists(db_path):
-        raise FileNotFoundError(f"Database not found at: {db_path}")
+        return render_template('index.html', monthly_fee="DB not found")
 
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
@@ -22,52 +22,35 @@ def submit():                           # try to link app code here
     def query_fee_breakdown(regime_code, scenario_code):
         
         lookup_code = regime_code + '_' + scenario_code
-        cursor = connection.cursor()
         cursor.execute("SELECT F1, F2, F3, F4, Monthly_Fee, Weekly_fee FROM StoredCalculationResults WHERE key = ?", (lookup_code,))
         extract = cursor.fetchone()
-        cursor.close()
-        connection.close()
         
         return extract
 
-    days = request.form.get('days')                                         
-    am_hours = request.form.get('morning_sessions')
-    pm_hours = request.form.get('afternoon_sessions')
+    days = request.form.get('days', "0")                                         
+    am_hours = request.form.get('morning_sessions', "0"))
+    pm_hours = request.form.get('afternoon_sessions', "0"))
 
     params = [days, am_hours, pm_hours]
-
+    params = [p if p else "0" for p in params]
+    
     i = 0
 
     for i in range(len(params)):
         if params[i] == "":
             params[i] = "0"
         if int(params[i]) > 5 or int(params[i]) < 0: 
-            #print("Value out of bounds, please enter session values between 1 and 5.")      # TODO look into input validation  chapt4er in AOTOMATE THE BORING STUFF BOOK P.190
-            break
+            return "Age out of range", 400 
                 
-    child_age = requests.form.get('child_age')  ################ TODO MODIFY THIS FOR HTML FORM INPUT
+    child_age = int(request.form.get('child_age', 0))  
+    funded_hours = int(request.form.get('funding_status', 0))
     
     if child_age > 6 or child_age < 0:
-        #print('Invalid age, please enter age between 0 and 5')
-        exit
+        return "Invalid age", 400
 
     valid_funding_hours = {0, 15, 30}
-
-    try:
-        funded_hours = int(requests.form.get('funding_status'))
-        if funded_hours in valid_funding_hours:                                ################  TODO MODIFY THIS FOR HTML FORM INPUT
-            #print(f"Accepted value: {funded_hours}")
-                        
-        else:
-            #print(" Invalid input. Please enter 0, 15, or 30.")
-    except ValueError:
-        #print("Please enter a valid integer.")
-
-        #funding_status = requests.form.get('')
-
-        #if not (funding_status == 'f' or funding_status == 'u'):
-            #print('Invalid Entry')
-            #exit
+    if funded_hours not in valid_funding_hours:
+        return render_template('index.html', monthly_fee="Invalid funding hours")
                 
         if (child_age >= 0 and child_age < 2):
             match funded_hours:
@@ -97,55 +80,14 @@ def submit():                           # try to link app code here
     sce_code = params[0] + '_' + params[1] + '_' + params[2] 
 
     extract = query_fee_breakdown(regime, sce_code)
+   
+    cursor.close()
+    connection.close()
 
-    output = [x for x in extract]                                                                                                                     # this section needs to be made into a function
+    output = [x for x in extract]                                                                                                                    
 
-    monthly_fee = output[4]
-
+    monthly_fee = output[4] if extrace else 0
     return render_template('index.html', monthly_fee = monthly_fee)
 
 if __name__== '__main__':
     app.run()
-
-
-
-
-    #app.run(debug=True)
-                
-    # first_name = input('Please enter first name:\n')
-    # last_name = input('Pleaes enter last name:\n')                # Be careful with spaces here as it feeds into the variable and the SQL query.
-
-    # connection = sqlite3.connect(db_path)
-    # cursor = connection.cursor()
-
-    # cursor.execute("SELECT Latest_Invoice_Price, key1, RegimeKey FROM child_static WHERE LastName = ? AND FirstName = ?", (last_name, first_name))                
-    # dbextract = cursor.fetchone()
-
-    # out2 = dbextract
-
-    # invoice_price = out2[0]
-    # sce_code = out2[1]
-    # reg_code = out2[2]
-                
-    # scenario_fee_component = query_fee_breakdown(reg_code,sce_code)
-                
-    # m2_output = [x for x in scenario_fee_component]
-
-    # print(f'\nLatest Invoice Price is: £{invoice_price}')
-    # print(f'\n ')
-    # print(f'\nThe monthly fee for this combination is: £{m2_output[4]}')
-    # print(f'\n         COST BREAKDOWN FOR THIS SCENARIO TYPE:')
-    # print(f'\nThe Number of funded hours/week is: {m2_output[0]}')
-    # print(f'\nThe Cost of extras and Food Supplemnet is: £{m2_output[1]}')
-    # print(f'\nThe Number of hours added is: {m2_output[2]}')
-    # print(f'\nThe cost of the unfunded hours is: £{m2_output[3]}')
-                
-    # cursor.close()
-    # connection.close()
-
-
-
-
-
-
-
