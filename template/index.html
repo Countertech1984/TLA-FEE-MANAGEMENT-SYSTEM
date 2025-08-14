@@ -11,7 +11,7 @@
 		<main>
 			<h1>TLA FEE CALCULATOR</h1>
 			<p>Please fill in this form with all the required information</p>
-			<form method="POST" action="https://countertech1984.github.io/TLA-FEE-MANAGEMENT-SYSTEM/app.py">   <!--  TODO: CHECKLOCATION UPDATES--> 
+			<form method="POST" action="https://tla-fee-management-system.onrender.com/">   <!--  TODO: CHECKLOCATION UPDATES--> 
 			<p>Enter Child Age</p>
 				<fieldset>
 					<label for="child_age">Child age:<input id = "child_age" name = "child_age" type = "number"/>
@@ -19,9 +19,12 @@
 				</fieldset>
 			<p>Please Select Funding Type</p>	
 				<fieldset>
-					<input id = "funding_status" name = "funding_status" type= "radio" value = "0"><label for = "funding_status">Unfunded</label><br>
-					<input id = "funding_status" name = "funding_status" type= "radio" value = "15"><label for = "funding_status">15 hours</label><br>
-					<input id = "funding_status" name = "funding_status" type= "radio" value = "30"><label for = "funding_status">30 hours</label><br>
+					<input id = "funding_status_0" name = "funding_status" type= "radio" value = "0">
+					<label for = "funding_status_0">Unfunded</label><br>
+					<input id = "funding_status_15" name = "funding_status" type= "radio" value = "15">
+					<label for = "funding_status_15">15 hours</label><br>
+					<input id = "funding_status_30" name = "funding_status" type= "radio" value = "30">
+					<label for = "funding_status_30">30 hours</label><br>
 				</fieldset>
 			<p>Enter Session Information Details</p>	
 			<fieldset>
@@ -34,8 +37,8 @@
 					<!-- This sends the form to the collection location -->
 		</form>
 
-		<div class = "output">
-			<h1 class = "monthly_fee"> monthly_fee: {{monthly_fee | safe}}<h1>
+		<div class="output">
+    		<h1 class="monthly_fee">monthly_fee: {{ monthly_fee | safe }}</h1>
 		</div>
 
 	</main>
@@ -49,6 +52,7 @@
 
 
 <!-- this can be captured using an echo script --> -
+
 
 
 
