@@ -11,7 +11,7 @@ def index():
 @app.route('/', methods=['POST'])
 def submit():                           # try to link app code here
 
-    db_path = r"\attendance.db" 
+    db_path = os.path.join(os.path.dirname(__file__), 'attendance.db') 
 
     if not os.path.exists(db_path):
         raise FileNotFoundError(f"Database not found at: {db_path}")
@@ -25,7 +25,9 @@ def submit():                           # try to link app code here
         cursor = connection.cursor()
         cursor.execute("SELECT F1, F2, F3, F4, Monthly_Fee, Weekly_fee FROM StoredCalculationResults WHERE key = ?", (lookup_code,))
         extract = cursor.fetchone()
-
+        cursor.close()
+        connection.close()
+        
         return extract
 
     days = request.form.get('days')                                         
@@ -140,6 +142,7 @@ if __name__== '__main__':
                 
     # cursor.close()
     # connection.close()
+
 
 
 
