@@ -1,1 +1,1 @@
-web: gunicorn dbconnector:dbconnector
+web: gunicorn app:app
