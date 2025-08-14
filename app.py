@@ -42,32 +42,32 @@ def submit():                           # try to link app code here
         if params[i] == "":
             params[i] = "0"
         if int(params[i]) > 5 or int(params[i]) < 0: 
-            print("Value out of bounds, please enter session values between 1 and 5.")      # TODO look into input validation  chapt4er in AOTOMATE THE BORING STUFF BOOK P.190
+            #print("Value out of bounds, please enter session values between 1 and 5.")      # TODO look into input validation  chapt4er in AOTOMATE THE BORING STUFF BOOK P.190
             break
                 
     child_age = requests.form.get('child_age')  ################ TODO MODIFY THIS FOR HTML FORM INPUT
     
     if child_age > 6 or child_age < 0:
-        print('Invalid age, please enter age between 0 and 5')
+        #print('Invalid age, please enter age between 0 and 5')
         exit
 
     valid_funding_hours = {0, 15, 30}
 
     try:
-        funded_hours = int(input("Enter a number (0, 15, or 30): "))
+        funded_hours = int(requests.form.get('funding_status'))
         if funded_hours in valid_funding_hours:                                ################  TODO MODIFY THIS FOR HTML FORM INPUT
-            print(f"Accepted value: {funded_hours}")
+            #print(f"Accepted value: {funded_hours}")
                         
         else:
-            print(" Invalid input. Please enter 0, 15, or 30.")
+            #print(" Invalid input. Please enter 0, 15, or 30.")
     except ValueError:
-        print("Please enter a valid integer.")
+        #print("Please enter a valid integer.")
 
-        funding_status = input('Please enter funding status (type f/u funded /unfunded: )\n')
+        #funding_status = requests.form.get('')
 
-        if not (funding_status == 'f' or funding_status == 'u'):
-            print('Invalid Entry')
-            exit
+        #if not (funding_status == 'f' or funding_status == 'u'):
+            #print('Invalid Entry')
+            #exit
                 
         if (child_age >= 0 and child_age < 2):
             match funded_hours:
@@ -142,6 +142,7 @@ if __name__== '__main__':
                 
     # cursor.close()
     # connection.close()
+
 
 
 
