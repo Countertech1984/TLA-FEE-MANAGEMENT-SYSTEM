@@ -12,15 +12,9 @@
 			<h1>TLA FEE CALCULATOR</h1>
 			<p>Please fill in this form with all the required information</p>
 			<form method="POST" action="https://countertech1984.github.io/TLA-FEE-MANAGEMENT-SYSTEM/dbconnector.py">   <!--  TODO: CHECKLOCATION UPDATES--> 
-		
+			<p>Enter Child Age</p>
 				<fieldset>
-					<label for="list id">Select Child Age Range 
-						<select id="list id" name="child age">
-							<option value="">(select one)</option>
-							<option value="1">Under 2 years</option>
-							<option value="2">2 to 3 years</option>															<!-- Drop down list input example-->
-							<option value="3">3 to 5 years</option>
-						</select>
+					<label for="child_age">Child age:<input id = "child_age" name = "child_age" type = "number"/>
 					</label>			
 				</fieldset>
 			<p>Please Select Funding Type</p>	
@@ -55,4 +49,5 @@
 
 
 <!-- this can be captured using an echo script --> -
+
 
