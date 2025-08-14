@@ -103,7 +103,12 @@ def submit():                           # try to link app code here
     return render_template('index.html', monthly_fee = monthly_fee)
 
 if __name__== '__main__':
-    app.run(debug=True)
+    app.run()
+
+
+
+
+    #app.run(debug=True)
                 
     # first_name = input('Please enter first name:\n')
     # last_name = input('Pleaes enter last name:\n')                # Be careful with spaces here as it feeds into the variable and the SQL query.
@@ -135,6 +140,7 @@ if __name__== '__main__':
                 
     # cursor.close()
     # connection.close()
+
 
 
 
