@@ -28,8 +28,8 @@ def submit():
         return extract
 
     days = request.form.get('days', "0")                                         
-    am_hours = request.form.get('morning_sessions', "0"))
-    pm_hours = request.form.get('afternoon_sessions', "0"))
+    am_hours = request.form.get('morning_sessions', "0")
+    pm_hours = request.form.get('afternoon_sessions', "0")
 
     params = [days, am_hours, pm_hours]
     params = [p if p else "0" for p in params]
@@ -91,3 +91,4 @@ def submit():
 
 if __name__== '__main__':
     app.run()
+
