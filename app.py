@@ -89,11 +89,24 @@ def submit():
 
     output = [x for x in extract]                                                                                                                    
 
-    monthly_fee = output[4] if extract else 0
-    return render_template('index.html', monthly_fee = monthly_fee)
+    if extract: 
+        monthly_fee = output[4]
+        funded_hours_wk = output[0]
+        extras_cost = output[1]
+        hours_added = output[2]
+        unfunded_hours_cost = output[3]
+    else:
+        monthly_fee = 0
+        funded_hours_wk = 0
+        extras_cost = 0
+        hours_added = 0
+        unfunded_hours_cost = 0
+
+    return render_template('index.html', monthly_fee = monthly_fee, funded_hours_wk = funded_hours_wk , extras_cost = extras_cost, hours_added = hours_added, unfunded_hours_cost = unfunded_hours_cost)
 
 if __name__== '__main__':
     app.run()
+
 
 
 
