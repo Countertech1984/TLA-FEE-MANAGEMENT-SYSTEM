@@ -27,6 +27,17 @@ def submit():
         
         return extract
 
+    child_age = int(request.form.get('child_age', 0))  
+
+    if child_age > 6 or child_age < 0:
+        return "Invalid age", 400
+    
+    funded_hours = int(request.form.get('funding_status', 0))
+
+    valid_funding_hours = {0, 15, 30}
+    if funded_hours not in valid_funding_hours:
+        return render_template('index.html', monthly_fee="Invalid funding hours")
+    
     days = request.form.get('days', "0")                                         
     am_hours = request.form.get('morning_sessions', "0")
     pm_hours = request.form.get('afternoon_sessions', "0")
@@ -41,17 +52,7 @@ def submit():
             params[i] = "0"
         if int(params[i]) > 5 or int(params[i]) < 0: 
             return "Age out of range", 400 
-                
-    child_age = int(request.form.get('child_age', 0))  
-    funded_hours = int(request.form.get('funding_status', 0))
-    
-    if child_age > 6 or child_age < 0:
-        return "Invalid age", 400
-
-    valid_funding_hours = {0, 15, 30}
-    if funded_hours not in valid_funding_hours:
-        return render_template('index.html', monthly_fee="Invalid funding hours")
-                
+            
         if (child_age >= 0 and child_age < 2):
             match funded_hours:
                 case 0:
@@ -91,4 +92,5 @@ def submit():
 
 if __name__== '__main__':
     app.run()
+
 
