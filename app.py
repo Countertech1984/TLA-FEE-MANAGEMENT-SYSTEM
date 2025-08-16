@@ -55,30 +55,30 @@ def submit():
 
     regime = None 
             
-        if (child_age >= 0 and child_age < 2):
-            match funded_hours:
-                case 0:
-                    regime = 'ST_under2'
-                case 15:
-                    regime = 'G_02_15'
-                case 30:
-                    regime = 'G_02_30'
-        elif (child_age >= 2 and child_age < 3):
-            match funded_hours:
-                case 0:
-                    regime = 'ST_2_to_3'
-                case 15:
-                    regime = 'G_23_15'
-                case 30:
-                    regime = 'G_23_30' 
-        elif (child_age >= 3 and child_age <= 6):
-            match funded_hours:
-                case 0:
-                    regime = 'ST_over3'
-                case 15:
-                    regime = 'G_35_15'
-                case 30:
-                    regime = 'G_35_30'                      
+    if (child_age >= 0 and child_age < 2):
+        match funded_hours:
+            case 0:
+                regime = 'ST_under2'
+            case 15:
+                regime = 'G_02_15'
+            case 30:
+                regime = 'G_02_30'
+    elif (child_age >= 2 and child_age < 3):
+        match funded_hours:
+            case 0:
+                regime = 'ST_2_to_3'
+            case 15:
+                regime = 'G_23_15'
+            case 30:
+                regime = 'G_23_30' 
+    elif (child_age >= 3 and child_age <= 6):
+        match funded_hours:
+            case 0:
+                regime = 'ST_over3'
+            case 15:
+                regime = 'G_35_15'
+            case 30:
+                regime = 'G_35_30'                      
                                                                         
     sce_code = params[0] + '_' + params[1] + '_' + params[2] 
 
@@ -94,6 +94,7 @@ def submit():
 
 if __name__== '__main__':
     app.run()
+
 
 
 
