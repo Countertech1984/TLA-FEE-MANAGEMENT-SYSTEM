@@ -38,7 +38,12 @@
 		</form>
 
 		<div class="output">
-    		<h1 class="monthly_fee">monthly_fee: {{ monthly_fee | safe }}</h1>
+    		<h1 class="monthly_fee">Monthly Fee: £{{ monthly_fee | safe }}</h1><br><br>
+			<h1> COST BREAKDOWN FOR THIS SCENARIO TYPE:</h1><br>
+			<p class = "breakdown">The Number of funded hours/week is: {{ funded_hours_wk | safe }} </p><br>
+			<p class = "breakdown">The Cost of extras and Food Supplemnet is: £{{ extras_cost | safe }} </p><br>
+			<p class = "breakdown">The Number of hours added is: {{ hours_added | safe }} </p><br>
+			<p class = "breakdown">The cost of the unfunded hours is: £{{ unfunded_hours_cost | safe }} </p><br>
 		</div>
 
 	</main>
@@ -52,6 +57,7 @@
 
 
 <!-- this can be captured using an echo script --> -
+
 
 
 
