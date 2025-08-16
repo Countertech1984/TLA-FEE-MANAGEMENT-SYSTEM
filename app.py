@@ -52,6 +52,8 @@ def submit():
             params[i] = "0"
         if int(params[i]) > 5 or int(params[i]) < 0: 
             return "Age out of range", 400 
+
+    regime = None 
             
         if (child_age >= 0 and child_age < 2):
             match funded_hours:
@@ -61,7 +63,7 @@ def submit():
                     regime = 'G_02_15'
                 case 30:
                     regime = 'G_02_30'
-        if (child_age >= 2 and child_age < 3):
+        elif (child_age >= 2 and child_age < 3):
             match funded_hours:
                 case 0:
                     regime = 'ST_2_to_3'
@@ -69,7 +71,7 @@ def submit():
                     regime = 'G_23_15'
                 case 30:
                     regime = 'G_23_30' 
-        if (child_age >= 3 and child_age <= 6):
+        elif (child_age >= 3 and child_age <= 6):
             match funded_hours:
                 case 0:
                     regime = 'ST_over3'
@@ -87,10 +89,11 @@ def submit():
 
     output = [x for x in extract]                                                                                                                    
 
-    monthly_fee = output[4] if extrace else 0
+    monthly_fee = output[4] if extract else 0
     return render_template('index.html', monthly_fee = monthly_fee)
 
 if __name__== '__main__':
     app.run()
+
 
 
